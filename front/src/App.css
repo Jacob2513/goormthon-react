@@ -9,13 +9,13 @@
   width: min(680px, 100%);
   border-radius: 16px;
   padding: 2rem;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--vapor-color-background-canvas-100, #ffffff);
+  border: 1px solid var(--vapor-color-border-normal, #e5e7eb);
   box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
 }
 
 .eyebrow {
-  color: #2563eb;
+  color: var(--vapor-color-foreground-primary-100, #2563eb);
   font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.03em;
@@ -28,27 +28,28 @@ h1 {
   font-size: clamp(1.75rem, 3vw, 2.25rem);
 }
 
+.themeStatus {
+  margin: 0 0 0.75rem;
+}
+
 .result {
   margin: 1rem 0;
 }
 
 .error {
   margin: 1rem 0;
-  color: #b91c1c;
+  color: var(--vapor-color-foreground-danger-100, #b91c1c);
 }
 
-button {
-  margin-top: 0.5rem;
-  border: 0;
-  border-radius: 10px;
-  padding: 0.65rem 1rem;
-  background: #1d4ed8;
-  color: #ffffff;
-  font-weight: 600;
-  cursor: pointer;
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
+.buttonContent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
