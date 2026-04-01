@@ -20,20 +20,13 @@ const fetchManifest = async (): Promise<Manifest> => {
 
 function App() {
   const { resolvedTheme, setTheme, mounted } = useTheme();
-  const {
-    data,
-    isLoading,
-    isFetching,
-    isError,
-    error,
-    refetch,
-  } = useQuery({
+  const { data, isLoading, isFetching, isError, error, refetch } = useQuery({
     queryKey: ["manifest"],
     queryFn: fetchManifest,
     staleTime: 1000 * 60,
   });
 
-  const currentThemeLabel = mounted ? resolvedTheme ?? "system" : "loading";
+  const currentThemeLabel = mounted ? (resolvedTheme ?? "system") : "loading";
 
   return (
     <main className="app">
@@ -45,7 +38,8 @@ function App() {
         {isError ? <p className="error">{(error as Error).message}</p> : null}
         {!isLoading && !isError ? (
           <p className="result">
-            Loaded app name: <strong>{data?.name ?? data?.short_name ?? "N/A"}</strong>
+            Loaded app name:{" "}
+            <strong>{data?.name ?? data?.short_name ?? "N/A"}</strong>
           </p>
         ) : null}
 
@@ -57,7 +51,9 @@ function App() {
             </span>
           </Button>
           <Button
-            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            onClick={() =>
+              setTheme(resolvedTheme === "dark" ? "light" : "dark")
+            }
             disabled={!mounted}
           >
             {resolvedTheme === "dark" ? "Switch to light" : "Switch to dark"}

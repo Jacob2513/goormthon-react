@@ -1,6 +1,10 @@
 body {
   margin: 0;
-  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "Segoe UI",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   color: var(--vapor-color-foreground-normal-200, #0f172a);
   background: var(--vapor-color-background-canvas-100, #f8fafc);
   -webkit-font-smoothing: antialiased;
