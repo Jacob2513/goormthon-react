@@ -8,7 +8,15 @@ import eslintConfigPrettier from "eslint-config-prettier";
 import tseslint from "typescript-eslint";
 
 export default defineConfig([
-  globalIgnores(["dist", "node_modules", ".agents", ".claude", ".kiro"]),
+  globalIgnores([
+    "dist",
+    "node_modules",
+    ".agents",
+    ".claude",
+    ".kiro",
+    "src/api/generated",
+    "orval.config.ts",
+  ]),
   {
     files: ["**/*.{ts,tsx}"],
     extends: [
