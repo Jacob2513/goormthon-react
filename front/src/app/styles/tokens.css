@@ -161,6 +161,8 @@
     --color-foreground-inverse: #000000;
     --color-background-surface-200: #f7f7f7;
     --vapor-color-background-surface-200: var(--color-background-surface-200);
+    --color-background-base-white: var(--vapor-color-white);
+    --vapor-color-background-base-white: var(--color-background-base-white);
   }
 
   [data-vapor-theme="dark"] {
@@ -314,4 +316,22 @@
     --color-foreground-inverse: #000000;
     --vapor-color-background-surface-200: var(--vapor-color-gray-100);
   }
+}
+
+/* Hide scrollbars globally while preserving scroll behavior */
+html,
+body,
+#root,
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#root::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
