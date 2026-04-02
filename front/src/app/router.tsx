@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
+import { ComponentsPage } from "@/pages/components/ui/ComponentsPage";
 import { HomePage } from "@/pages/home/ui/HomePage";
+import { MentorPreviewPage } from "@/pages/mentor-preview/ui/MentorPreviewPage";
 import { NotFoundPage } from "@/pages/not-found/ui/NotFoundPage";
 import { TokensPage } from "@/pages/tokens/ui/TokensPage";
 import { ROUTES } from "@/shared/config/routes";
@@ -17,8 +19,16 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "tokens",
+        path: ROUTES.components.slice(1),
+        element: <ComponentsPage />,
+      },
+      {
+        path: ROUTES.tokens.slice(1),
         element: <TokensPage />,
+      },
+      {
+        path: ROUTES.mentorPreview.slice(1),
+        element: <MentorPreviewPage />,
       },
       {
         path: "*",
