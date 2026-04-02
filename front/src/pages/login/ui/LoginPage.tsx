@@ -1,68 +1,242 @@
-import { Link } from "react-router-dom";
+﻿import type { FormEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
-  Card,
+  Field,
+  Form,
   HStack,
   Text,
+  TextInput,
   VStack,
 } from "@vapor-ui/core";
+import { ChevronLeftOutlineIcon } from "@vapor-ui/icons";
 import { ROUTES } from "@/shared/config/routes";
 
+const FIELD_INPUT_STYLES = {
+  height: "48px",
+  borderRadius: "8px",
+  borderColor: "var(--vapor-color-border-normal, #e1e1e1)",
+  backgroundColor: "var(--vapor-color-background-canvas, #ffffff)",
+  paddingInline: "24px",
+} as const;
+
 export function LoginPage() {
+  const navigate = useNavigate();
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
+
   return (
     <Box
       render={<main />}
       $css={{
-        minHeight: "100vh",
-        display: "grid",
-        placeItems: "center",
-        padding: "$400",
-        background:
-          "radial-gradient(circle at top, rgba(11, 14, 43, 0.92), #020311 60%)",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "var(--vapor-color-background-surface-200, #f7f7f7)",
       }}
     >
-      <Card.Root
+      <VStack
         $css={{
-          width: "min(520px, 100%)",
-          boxShadow: "0 24px 80px rgba(0, 0, 0, 0.24)",
+          height: "100%",
+          alignItems: "stretch",
         }}
       >
-        <Card.Body>
-          <VStack
+        <HStack
+          $css={{
+            height: "56px",
+            alignItems: "center",
+          }}
+        >
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={() => navigate(-1)}
             $css={{
-              gap: "$200",
-              alignItems: "center",
-              textAlign: "center",
+              height: "40px",
+              minHeight: "40px",
+              color: "var(--vapor-color-gray-600, #5d5d5d)",
             }}
           >
-            <Text typography="body3" foreground="primary-100">
-              Login Placeholder
-            </Text>
-            <Text render={<h1 />} typography="heading3">
-              로그인 화면은 다음 단계에서 구현합니다
-            </Text>
-            <Text typography="body2" foreground="normal-100">
-              현재는 라우팅 흐름과 진입 경로만 맞춘 상태입니다. 이후 세션 기반
-              로그인 폼과 인증 처리 로직을 여기에 연결하면 됩니다.
-            </Text>
             <HStack
               $css={{
-                gap: "$150",
-                flexWrap: "wrap",
-                justifyContent: "center",
+                gap: "4px",
+                alignItems: "center",
               }}
             >
-              <Button render={<Link to={ROUTES.onboarding} />}>
-                온보딩으로 돌아가기
-              </Button>
-              <Button variant="outline" render={<Link to={ROUTES.home} />}>
-                메인으로 이동
-              </Button>
+              <ChevronLeftOutlineIcon size={20} aria-hidden="true" />
+              <Text typography="heading6" $css={{ color: "inherit" }}>
+                뒤로가기
+              </Text>
             </HStack>
+          </Button>
+        </HStack>
+
+        <Form
+          noValidate
+          onSubmit={handleSubmit}
+          $css={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            minHeight: 0,
+            paddingInline: "16px",
+          }}
+        >
+          <VStack
+            $css={{
+              gap: "72px",
+              alignItems: "stretch",
+              paddingTop: "32px",
+            }}
+          >
+            <VStack
+              $css={{
+                gap: "4px",
+                alignItems: "stretch",
+              }}
+            >
+              <Text
+                render={<h1 />}
+                typography="heading3"
+                $css={{ color: "var(--vapor-color-gray-900, #0f172b)" }}
+              >
+                로그인
+              </Text>
+              <Text
+                typography="heading6"
+                $css={{
+                  color: "var(--vapor-color-foreground-hint-100, #45556c)",
+                }}
+              >
+                제주의 전통을 이어갈 여정을 시작하세요
+              </Text>
+            </VStack>
+
+            <VStack
+              $css={{
+                gap: "16px",
+                alignItems: "stretch",
+              }}
+            >
+              <Field.Root name="phone">
+                <VStack
+                  $css={{
+                    gap: "8px",
+                    alignItems: "stretch",
+                  }}
+                >
+                  <Field.Label
+                    $css={{
+                      color:
+                        "var(--vapor-color-foreground-normal-100, #4c4c4c)",
+                      fontSize: "12px",
+                      lineHeight: "18px",
+                      fontWeight: 500,
+                    }}
+                  >
+                    핸드폰 번호
+                  </Field.Label>
+                  <TextInput
+                    type="tel"
+                    autoComplete="tel"
+                    $css={FIELD_INPUT_STYLES}
+                  />
+                </VStack>
+              </Field.Root>
+
+              <Field.Root name="password">
+                <VStack
+                  $css={{
+                    gap: "8px",
+                    alignItems: "stretch",
+                  }}
+                >
+                  <Field.Label
+                    $css={{
+                      color:
+                        "var(--vapor-color-foreground-normal-100, #4c4c4c)",
+                      fontSize: "12px",
+                      lineHeight: "18px",
+                      fontWeight: 500,
+                    }}
+                  >
+                    비밀번호
+                  </Field.Label>
+                  <TextInput
+                    type="password"
+                    autoComplete="current-password"
+                    $css={FIELD_INPUT_STYLES}
+                  />
+                  <Field.Description
+                    $css={{
+                      paddingLeft: "4px",
+                      color: "var(--vapor-color-foreground-hint-100, #5d5d5d)",
+                      fontSize: "14px",
+                      lineHeight: "22px",
+                      fontWeight: 400,
+                    }}
+                  >
+                    8~16자, 영문, 특수문자 포함
+                  </Field.Description>
+                </VStack>
+              </Field.Root>
+            </VStack>
           </VStack>
-        </Card.Body>
-      </Card.Root>
+
+          <VStack
+            $css={{
+              marginTop: "auto",
+              gap: "10px",
+              alignItems: "stretch",
+              paddingBottom: "20px",
+            }}
+          >
+            <Button
+              type="submit"
+              variant="fill"
+              colorPalette="primary"
+              $css={{
+                width: "100%",
+                height: "56px",
+                minHeight: "56px",
+                borderRadius: "14px",
+                backgroundColor: "var(--vapor-color-cyan-300, #1cb3cb)",
+                color: "var(--vapor-color-white, #ffffff)",
+                fontSize: "16px",
+                lineHeight: "24px",
+                fontWeight: 600,
+                letterSpacing: "-0.3px",
+              }}
+            >
+              로그인
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              colorPalette="secondary"
+              render={<Link to={ROUTES.onboarding} />}
+              $css={{
+                width: "100%",
+                height: "56px",
+                minHeight: "56px",
+                borderRadius: "14px",
+                boxShadow:
+                  "inset 0 0 0 1px var(--vapor-color-gray-700, #4c4c4c)",
+                backgroundColor: "var(--vapor-color-gray-000, #ffffff)",
+                color: "var(--vapor-color-gray-700, #4c4c4c)",
+                fontSize: "16px",
+                lineHeight: "24px",
+                fontWeight: 600,
+                letterSpacing: "-0.3px",
+              }}
+            >
+              회원가입
+            </Button>
+          </VStack>
+        </Form>
+      </VStack>
     </Box>
   );
 }
