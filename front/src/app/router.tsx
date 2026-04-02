@@ -6,6 +6,7 @@ import { MatchingPage } from "@/pages/matching/ui/MatchingPage";
 import { MentorPreviewPage } from "@/pages/mentor-preview/ui/MentorPreviewPage";
 import { NotFoundPage } from "@/pages/not-found/ui/NotFoundPage";
 import { OnboardingPage } from "@/pages/onboarding/ui/OnboardingPage";
+import { RegisterPage } from "@/pages/register/RegisterPage";
 import { TokensPage } from "@/pages/tokens/ui/TokensPage";
 import { ROUTES } from "@/shared/config/routes";
 import { RootErrorBoundary } from "@/shared/ui/errors/RootErrorBoundary";
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: ROUTES.login.slice(1),
         element: <LoginPage />,
+      },
+      {
+        path: ROUTES.register.slice(1),
+        element: <RegisterPage />,
       },
       {
         path: ROUTES.components.slice(1),

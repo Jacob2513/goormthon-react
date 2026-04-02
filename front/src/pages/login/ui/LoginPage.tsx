@@ -1,4 +1,5 @@
 ﻿import type { FormEvent } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Box,
@@ -23,6 +24,10 @@ const FIELD_INPUT_STYLES = {
 
 export function LoginPage() {
   const navigate = useNavigate();
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+
+  const canSubmit = phone.trim().length > 0 && password.trim().length > 0;
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -140,7 +145,11 @@ export function LoginPage() {
                   </Field.Label>
                   <TextInput
                     type="tel"
+                    inputMode="numeric"
                     autoComplete="tel"
+                    placeholder="01012345678"
+                    value={phone}
+                    onValueChange={(value) => setPhone(value.replace(/[^0-9]/g, ""))}
                     $css={FIELD_INPUT_STYLES}
                   />
                 </VStack>
@@ -167,6 +176,8 @@ export function LoginPage() {
                   <TextInput
                     type="password"
                     autoComplete="current-password"
+                    value={password}
+                    onValueChange={(value) => setPassword(value)}
                     $css={FIELD_INPUT_STYLES}
                   />
                   <Field.Description
@@ -197,6 +208,7 @@ export function LoginPage() {
               type="submit"
               variant="fill"
               colorPalette="primary"
+              disabled={!canSubmit}
               $css={{
                 width: "100%",
                 height: "56px",
@@ -216,7 +228,7 @@ export function LoginPage() {
               type="button"
               variant="outline"
               colorPalette="secondary"
-              render={<Link to={ROUTES.onboarding} />}
+              render={<Link to={ROUTES.register} />}
               $css={{
                 width: "100%",
                 height: "56px",
