@@ -37,6 +37,7 @@ const CATEGORY_OPTIONS: readonly CategoryOption[] = [
 
 const MATCHING_PAGE_BG = "#F7F7F7";
 const MATCHING_TOP_SURFACE_BG = "rgba(255, 255, 255, 0.9)";
+const MATCHING_CONTENT_WIDTH_PX = 358;
 
 const MATCHING_ITEMS: readonly MatchingItem[] = [
   {
@@ -44,7 +45,7 @@ const MATCHING_ITEMS: readonly MatchingItem[] = [
     kind: "job",
     category: "haenyeo",
     card: {
-      to: ROUTES.mentorPreview,
+      to: ROUTES.experienceDetail,
       imageSrc: mentorCardImage,
       imageAlt: "바닷가에서 작업 중인 해녀들",
       badgeLabel: "45년 이어온",
@@ -61,7 +62,7 @@ const MATCHING_ITEMS: readonly MatchingItem[] = [
     kind: "job",
     category: "stone",
     card: {
-      to: ROUTES.mentorPreview,
+      to: ROUTES.experienceDetail,
       imageSrc: mentorCardImage,
       imageAlt: "제주 바닷가에서 일하는 장인의 모습",
       badgeLabel: "25년 이어온",
@@ -78,7 +79,7 @@ const MATCHING_ITEMS: readonly MatchingItem[] = [
     kind: "job",
     category: "horse",
     card: {
-      to: ROUTES.mentorPreview,
+      to: ROUTES.experienceDetail,
       imageSrc: mentorCardImage,
       imageAlt: "제주 현장에서 활동 중인 직업 체험 장면",
       badgeLabel: "25년 이어온",
@@ -95,7 +96,7 @@ const MATCHING_ITEMS: readonly MatchingItem[] = [
     kind: "job",
     category: "tangerine",
     card: {
-      to: ROUTES.mentorPreview,
+      to: ROUTES.experienceDetail,
       imageSrc: mentorCardImage,
       imageAlt: "제주 귤 농가의 수확 작업 장면",
       badgeLabel: "25년 이어온",
@@ -112,7 +113,7 @@ const MATCHING_ITEMS: readonly MatchingItem[] = [
     kind: "job",
     category: "stone",
     card: {
-      to: ROUTES.mentorPreview,
+      to: ROUTES.experienceDetail,
       imageSrc: mentorCardImage,
       imageAlt: "제주 마을의 돌담과 장인 작업 장면",
       badgeLabel: "18년 이어온",
@@ -129,7 +130,7 @@ const MATCHING_ITEMS: readonly MatchingItem[] = [
     kind: "job",
     category: "haenyeo",
     card: {
-      to: ROUTES.mentorPreview,
+      to: ROUTES.experienceDetail,
       imageSrc: mentorCardImage,
       imageAlt: "해녀 공동체 활동 기록 장면",
       badgeLabel: "12년 이어온",
@@ -146,7 +147,7 @@ const MATCHING_ITEMS: readonly MatchingItem[] = [
     kind: "experience",
     category: "horse",
     card: {
-      to: ROUTES.mentorPreview,
+      to: ROUTES.experienceDetail,
       imageSrc: mentorCardImage,
       imageAlt: "제주 말 농장 체험 장면",
       badgeLabel: "8년 이어온",
@@ -163,7 +164,7 @@ const MATCHING_ITEMS: readonly MatchingItem[] = [
     kind: "experience",
     category: "tangerine",
     card: {
-      to: ROUTES.mentorPreview,
+      to: ROUTES.experienceDetail,
       imageSrc: mentorCardImage,
       imageAlt: "귤 수확 체험 장면",
       badgeLabel: "6년 이어온",
@@ -180,7 +181,7 @@ const MATCHING_ITEMS: readonly MatchingItem[] = [
     kind: "experience",
     category: "stone",
     card: {
-      to: ROUTES.mentorPreview,
+      to: ROUTES.experienceDetail,
       imageSrc: mentorCardImage,
       imageAlt: "돌담 쌓기 체험 장면",
       badgeLabel: "10년 이어온",
@@ -213,10 +214,12 @@ function MatchingChip({
       $css={{
         display: "inline-flex",
         alignItems: "center",
+        justifyContent: "center",
         gap: emoji ? "8px" : "0",
         height: "40px",
-        paddingLeft: emoji ? "16px" : "12px",
-        paddingRight: "16px",
+        minWidth: emoji ? "auto" : "62px",
+        paddingLeft: emoji ? "16px" : "18px",
+        paddingRight: emoji ? "16px" : "18px",
         border: "none",
         borderRadius: "999px",
         backgroundColor: selected ? "#262626" : "#F7F7F7",
@@ -401,59 +404,20 @@ export function MatchingPage() {
     >
       <MatchingHeader onBack={handleBack} />
 
-      <VStack
+      <Box
         $css={{
-          gap: "16px",
-          padding: "24px 0 16px",
           backgroundColor: MATCHING_TOP_SURFACE_BG,
+          paddingTop: "16px",
+          paddingBottom: "16px",
         }}
       >
-        <Box
-          $css={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: "12px",
-          }}
-        >
-          <Text
-            render={<p />}
-            typography="body2"
-            $css={{
-              color: "#393939",
-              fontWeight: 400,
-            }}
-          >
-            총 {filteredItems.length}개
-          </Text>
-
-          <Box
-            $css={{
-              display: "flex",
-              alignItems: "center",
-              gap: "4px",
-            }}
-          >
-            <MatchingToggleButton
-              active={selectedKind === "job"}
-              label="직업"
-              onClick={() => setSelectedKind("job")}
-            />
-            <MatchingToggleButton
-              active={selectedKind === "experience"}
-              label="체험"
-              onClick={() => setSelectedKind("experience")}
-            />
-          </Box>
-        </Box>
-
         <Box
           render={<div className="u-hide-scrollbar" />}
           $css={{
             display: "flex",
             gap: "8px",
             overflowX: "auto",
-            paddingBottom: "4px",
+            paddingInline: "16px",
           }}
         >
           {CATEGORY_OPTIONS.map((option) => (
@@ -466,24 +430,74 @@ export function MatchingPage() {
             />
           ))}
         </Box>
-      </VStack>
+      </Box>
 
       <Box
         $css={{
           flex: 1,
           overflowY: "auto",
-          padding: "0 0 16px",
           backgroundColor: MATCHING_PAGE_BG,
         }}
       >
         <VStack
           $css={{
+            width: "100%",
+            maxWidth: `${MATCHING_CONTENT_WIDTH_PX}px`,
+            marginInline: "auto",
             gap: "16px",
+            paddingTop: "24px",
+            paddingBottom: "16px",
           }}
         >
-          {filteredItems.map((item) => (
-            <MentorCard key={item.id} {...item.card} />
-          ))}
+          <Box
+            $css={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "12px",
+            }}
+          >
+            <Text
+              render={<p />}
+              typography="body2"
+              $css={{
+                color: "#393939",
+                fontWeight: 400,
+                letterSpacing: "-0.1px",
+              }}
+            >
+              총 {filteredItems.length}개
+            </Text>
+
+            <Box
+              $css={{
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+              }}
+            >
+              <MatchingToggleButton
+                active={selectedKind === "job"}
+                label="직업"
+                onClick={() => setSelectedKind("job")}
+              />
+              <MatchingToggleButton
+                active={selectedKind === "experience"}
+                label="체험"
+                onClick={() => setSelectedKind("experience")}
+              />
+            </Box>
+          </Box>
+
+          <VStack
+            $css={{
+              gap: "16px",
+            }}
+          >
+            {filteredItems.map((item) => (
+              <MentorCard key={item.id} {...item.card} />
+            ))}
+          </VStack>
         </VStack>
       </Box>
 
