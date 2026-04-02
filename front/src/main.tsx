@@ -1,12 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ThemeProvider } from "@vapor-ui/core";
 import "@vapor-ui/core/styles.css";
-import App from "./App";
-import "./index.css";
+import App from "./app/App";
 
-const queryClient = new QueryClient();
 const rootElement = document.getElementById("root");
 
 if (!rootElement) {
@@ -15,10 +11,6 @@ if (!rootElement) {
 
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <ThemeProvider defaultTheme="system">
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>
-    </ThemeProvider>
+    <App />
   </React.StrictMode>,
 );
