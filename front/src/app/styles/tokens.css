@@ -136,9 +136,10 @@
     --vapor-color-orange-900: #4b0000;
 
     /* ─── Gray ───────────────────────────────────── */
+    --vapor-color-gray-000: #ffffff;
     --vapor-color-gray-050: #efefef;
     --vapor-color-gray-100: #dadada;
-    --vapor-color-gray-200: #c0c0c0;
+    --vapor-color-gray-200: #c6c6c6;
     --vapor-color-gray-300: #9e9e9e;
     --vapor-color-gray-400: #8f8f8f;
     --vapor-color-gray-500: #727272;
@@ -158,6 +159,8 @@
     --color-background-canvas-200: var(--vapor-color-gray-050);
     --color-background-overlay-100: var(--vapor-color-canvas);
     --color-foreground-inverse: #000000;
+    --color-background-surface-200: #f7f7f7;
+    --vapor-color-background-surface-200: var(--color-background-surface-200);
   }
 
   [data-vapor-theme="dark"] {
@@ -309,5 +312,6 @@
     --color-background-canvas-200: var(--vapor-color-gray-050);
     --color-background-overlay-100: var(--vapor-color-gray-100);
     --color-foreground-inverse: #000000;
+    --vapor-color-background-surface-200: var(--vapor-color-gray-100);
   }
 }
