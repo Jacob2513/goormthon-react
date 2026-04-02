@@ -140,7 +140,7 @@ export function TokensPage() {
         </Flex>
 
         <Flex $css={{ gap: "$150", flexWrap: "wrap" }}>
-          {SEMANTIC_COLORS.map((color) => (
+          {(["primary", "success", "warning", "danger", "contrast", "hint"] as const).map((color) => (
             <Badge key={color} colorPalette={color}>
               {color}
             </Badge>
