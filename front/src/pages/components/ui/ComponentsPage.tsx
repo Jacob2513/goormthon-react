@@ -9,7 +9,12 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "@/shared/config/routes";
-import { MentorCard, type MentorCardProps } from "@/shared/ui/cards";
+import {
+  MentorCard,
+  ThumbnailCard,
+  type MentorCardProps,
+  type ThumbnailCardProps,
+} from "@/shared/ui/cards";
 
 const SAMPLE_MENTORS: readonly MentorCardProps[] = [
   {
@@ -59,6 +64,39 @@ const SAMPLE_MENTORS: readonly MentorCardProps[] = [
   },
 ] as const;
 
+const SAMPLE_THUMBNAILS: readonly ThumbnailCardProps[] = [
+  {
+    to: ROUTES.mentorPreview,
+    imageSrc:
+      "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "초원에서 풀을 뜯는 제주 말",
+    badgeLabel: "45년 이어온",
+    title: "제주의 말을 돌보는 하루",
+    statusLabel: "D-24",
+    caption: "제주시 구좌읍",
+  },
+  {
+    to: ROUTES.mentorPreview,
+    imageSrc:
+      "https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "바닷가 언덕을 달리는 말 무리",
+    badgeLabel: "23년 이어온",
+    title: "한라산 자락을 따라 달리는 승마 체험 프로그램 이름이 길어졌을 때",
+    statusLabel: "모집 마감 3일 전",
+    caption: "서귀포시 표선면 가시리 목장문화센터",
+  },
+  {
+    to: ROUTES.mentorPreview,
+    imageSrc:
+      "https://images.unsplash.com/photo-1504598318550-17eba1008a68?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "넓은 들판을 걷는 말과 사람",
+    badgeLabel: "8년 이어온",
+    title: "들판 산책과 돌봄 기록",
+    statusLabel: "상시 모집",
+    caption: "제주시 애월읍",
+  },
+] as const;
+
 export function ComponentsPage() {
   const [bookmarks, setBookmarks] = useState<Record<number, boolean>>({
     0: false,
@@ -102,11 +140,11 @@ export function ComponentsPage() {
                   Shared component test page
                 </Text>
                 <Text render={<h1 />} typography="heading3">
-                  MentorCard 검증 페이지
+                  공통 컴포넌트 검증 페이지
                 </Text>
                 <Text typography="body2" foreground="normal-100">
-                  기본 상태, 찜 상태, 긴 텍스트 상태를 한 화면에서 확인할 수
-                  있도록 구성했습니다.
+                  MentorCard와 ThumbnailCard의 기본 상태와 길이 변화, 상호작용을
+                  한 화면에서 확인할 수 있도록 구성했습니다.
                 </Text>
               </VStack>
               <HStack
@@ -163,6 +201,50 @@ export function ComponentsPage() {
           {...SAMPLE_MENTORS[1]}
           isBookmarked
         />
+
+        <VStack $css={{ gap: "$150" }}>
+          <Text render={<h2 />} typography="heading5">
+            ThumbnailCard
+          </Text>
+          <Text typography="body2" foreground="normal-100">
+            Figma 썸네일 카드의 기본 폭, 긴 텍스트, 부모 폭 확장 상태를 함께
+            점검합니다.
+          </Text>
+        </VStack>
+
+        <HStack
+          $css={{
+            gap: "$250",
+            flexWrap: "wrap",
+            alignItems: "stretch",
+          }}
+        >
+          <Box
+            $css={{
+              width: "100%",
+              maxWidth: "283px",
+            }}
+          >
+            <ThumbnailCard {...SAMPLE_THUMBNAILS[0]} />
+          </Box>
+          <Box
+            $css={{
+              width: "100%",
+              maxWidth: "283px",
+            }}
+          >
+            <ThumbnailCard {...SAMPLE_THUMBNAILS[1]} />
+          </Box>
+        </HStack>
+
+        <Box
+          $css={{
+            width: "100%",
+            maxWidth: "420px",
+          }}
+        >
+          <ThumbnailCard {...SAMPLE_THUMBNAILS[2]} />
+        </Box>
       </VStack>
     </Box>
   );
