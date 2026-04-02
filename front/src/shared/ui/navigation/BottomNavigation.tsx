@@ -1,4 +1,4 @@
-import { Box, Text } from "@vapor-ui/core";
+import { Box, IconButton, Text } from "@vapor-ui/core";
 import {
   HomeIcon,
   HomeOutlineIcon,
@@ -9,20 +9,21 @@ import matchingIcon from "@/shared/assets/matchingIcon.svg";
 
 export type BottomNavTab = "home" | "my";
 
-const NAV_WIDTH_PX = 358;
 const NAV_HEIGHT_PX = 80;
 const NAV_RADIUS_PX = 18;
 const NAV_TOP_OFFSET_PX = 20;
 const TAB_ROW_WIDTH_PX = 240;
-const TAB_ROW_TOP_OFFSET_PX = 19;
+
 const TAB_ICON_SIZE_PX = 22;
 const TAB_LABEL_GAP_PX = 3;
 const TAB_LABEL_FONT_SIZE_PX = 12;
 const TAB_LABEL_LINE_HEIGHT_PX = 16;
 const CENTER_BUTTON_SIZE_PX = 60;
+const CENTER_BUTTON_TOP_OFFSET_PX = -20;
 const NOTCH_DIAMETER_PX = 80;
 const NOTCH_TOP_OFFSET_PX = -30;
-const SURFACE_COLOR = "var(--vapor-color-background-surface-200, #e2e2e2)";
+const NOTCH_CENTER_Y_PX = NOTCH_TOP_OFFSET_PX + NOTCH_DIAMETER_PX / 2; // 10
+const NOTCH_RADIUS_PX = NOTCH_DIAMETER_PX / 2; // 40
 const NAV_BG_COLOR = "var(--vapor-color-background-canvas, #232323)";
 const TAB_ACTIVE_COLOR = "var(--vapor-color-cyan-200, #84d2e2)";
 const TAB_INACTIVE_COLOR = "var(--vapor-color-gray-200, #c6c6c6)";
@@ -59,6 +60,14 @@ export function BottomNavigation({
       }}
     >
       <Box
+        render={
+          <div
+            style={{
+              mask: `radial-gradient(circle at 50% ${NOTCH_CENTER_Y_PX}px, transparent ${NOTCH_RADIUS_PX}px, black ${NOTCH_RADIUS_PX}px)`,
+              WebkitMask: `radial-gradient(circle at 50% ${NOTCH_CENTER_Y_PX}px, transparent ${NOTCH_RADIUS_PX}px, black ${NOTCH_RADIUS_PX}px)`,
+            }}
+          />
+        }
         $css={{
           position: "relative",
           zIndex: 2,
@@ -67,34 +76,18 @@ export function BottomNavigation({
           marginTop: `${NAV_TOP_OFFSET_PX}px`,
           borderRadius: `${NAV_RADIUS_PX}px`,
           backgroundColor: NAV_BG_COLOR,
-          overflow: "hidden",
         }}
       >
-        <Box
-          aria-hidden="true"
-          $css={{
-            position: "absolute",
-            left: "50%",
-            top: `${NOTCH_TOP_OFFSET_PX}px`,
-            transform: "translateX(-50%)",
-            width: `${NOTCH_DIAMETER_PX}px`,
-            height: `${NOTCH_DIAMETER_PX}px`,
-            borderRadius: "999px",
-            backgroundColor: SURFACE_COLOR,
-            zIndex: 0,
-          }}
-        />
-
         <Box
           $css={{
             position: "relative",
             zIndex: 2,
             width: `${TAB_ROW_WIDTH_PX}px`,
+            height: "100%",
             marginInline: "auto",
-            marginTop: `${TAB_ROW_TOP_OFFSET_PX}px`,
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "flex-start",
+            alignItems: "center",
           }}
         >
           <Box
@@ -179,42 +172,36 @@ export function BottomNavigation({
         </Box>
       </Box>
 
-      <Box
-        render={
-          <button
-            type="button"
-            onClick={handleCenterClick}
-            aria-label="start matching"
-          />
-        }
+      <IconButton
+        aria-label="start matching"
+        onClick={handleCenterClick}
+        shape="circle"
+        variant="ghost"
         $css={{
           position: "absolute",
-          top: "0",
+          top: `${CENTER_BUTTON_TOP_OFFSET_PX}px`,
           left: "50%",
           transform: "translateX(-50%)",
           width: `${CENTER_BUTTON_SIZE_PX}px`,
           height: `${CENTER_BUTTON_SIZE_PX}px`,
-          borderRadius: "999px",
-          margin: "0",
+          minWidth: `${CENTER_BUTTON_SIZE_PX}px`,
+          minHeight: `${CENTER_BUTTON_SIZE_PX}px`,
           padding: "0",
-          border: "none",
-          background: "none",
-          display: "grid",
-          placeItems: "center",
-          cursor: "pointer",
+          backgroundColor: "transparent",
           zIndex: 3,
         }}
       >
-        <Box
-          render={<img src={matchingIcon} alt="" aria-hidden="true" />}
-          $css={{
+        <img
+          src={matchingIcon}
+          alt=""
+          aria-hidden="true"
+          style={{
+            display: "block",
             width: `${CENTER_BUTTON_SIZE_PX}px`,
             height: `${CENTER_BUTTON_SIZE_PX}px`,
-            borderRadius: "999px",
-            display: "block",
           }}
         />
-      </Box>
+      </IconButton>
     </Box>
   );
 }

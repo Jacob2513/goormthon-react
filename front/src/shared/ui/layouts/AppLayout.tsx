@@ -9,7 +9,7 @@ export function AppLayout() {
     <Box
       $css={{
         minHeight: "100dvh",
-        backgroundColor: "var(--vapor-color-gray-700)",
+        backgroundColor: "transparent",
         display: "grid",
         placeItems: "center",
       }}
@@ -19,14 +19,23 @@ export function AppLayout() {
         $css={{
           width: `min(${DESIGN_WIDTH_PX}px, 100vw)`,
           height: `min(${DESIGN_HEIGHT_PX}px, 100dvh)`,
-          backgroundColor: "var(--vapor-color-background-surface-200)",
+          background:
+            "linear-gradient(to bottom, var(--vapor-color-background-base-white) 0 48px, var(--vapor-color-background-surface-200) 48px calc(100% - 34px), var(--vapor-color-background-base-white) calc(100% - 34px) 100%)",
           boxSizing: "border-box",
           paddingTop: "48px",
           paddingBottom: "34px",
-          paddingInline: "16px",
         }}
       >
-        <Outlet />
+        <Box
+          $css={{
+            width: "100%",
+            height: "100%",
+            backgroundColor: "var(--vapor-color-background-surface-200)",
+            overflow: "auto",
+          }}
+        >
+          <Outlet />
+        </Box>
       </Box>
     </Box>
   );
