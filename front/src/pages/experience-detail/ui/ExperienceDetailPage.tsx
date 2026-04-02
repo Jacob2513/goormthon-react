@@ -181,156 +181,165 @@ export function ExperienceDetailPage() {
     <Box
       $css={{
         width: "100%",
-        minHeight: "100%",
+        // minHeight: "100%",
+        height: "100dvh",
+        minHeight: "100dvh",
         backgroundColor: PAGE_BG,
         position: "relative",
-        overflowX: "hidden",
+        overflow: "hidden",
       }}
     >
       <Box
         $css={{
-          position: "relative",
-          height: "379px",
-          overflow: "hidden",
-          backgroundColor: "#0B1020",
+          width: "100%",
+          height: "100dvh",
+          overflowY: "auto",
         }}
       >
         <Box
-          render={<img src={heroImage} alt="" />}
-          aria-hidden="true"
           $css={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-          }}
-        />
-        <Box
-          $css={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.6) 100%)",
-          }}
-        />
-
-        <Box
-          $css={{
-            position: "absolute",
-            top: "8px",
-            left: "16px",
+            position: "relative",
+            height: "379px",
+            overflow: "hidden",
+            backgroundColor: "#0B1020",
           }}
         >
           <Box
-            render={<button type="button" onClick={handleBack} aria-label="뒤로가기" />}
+            render={<img src={heroImage} alt="" />}
+            aria-hidden="true"
             $css={{
-              width: "40px",
-              height: "40px",
-              border: "none",
-              borderRadius: "999px",
-              backgroundColor: "rgba(255, 255, 255, 0.9)",
-              display: "grid",
-              placeItems: "center",
-              cursor: "pointer",
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          />
+          <Box
+            $css={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.6) 100%)",
+            }}
+          />
+
+          <Box
+            $css={{
+              position: "absolute",
+              top: "8px",
+              left: "16px",
             }}
           >
-            <ChevronLeftOutlineIcon size={20} color="#0F172B" />
+            <Box
+              render={<button type="button" onClick={handleBack} aria-label="뒤로가기" />}
+              $css={{
+                width: "40px",
+                height: "40px",
+                border: "none",
+                borderRadius: "999px",
+                backgroundColor: "rgba(255, 255, 255, 0.9)",
+                display: "grid",
+                placeItems: "center",
+                cursor: "pointer",
+              }}
+            >
+              <ChevronLeftOutlineIcon size={20} color="#0F172B" />
+            </Box>
           </Box>
+
+          <VStack
+            $css={{
+              position: "absolute",
+              left: "16px",
+              right: "16px",
+              bottom: "49px",
+              gap: "8px",
+            }}
+          >
+            <Box
+              $css={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "32px",
+                paddingInline: "12px",
+                borderRadius: "999px",
+                backgroundColor: "#EF6F25",
+                width: "fit-content",
+              }}
+            >
+              <Text
+                render={<p />}
+                $css={{
+                  color: "#FFF6F1",
+                  fontSize: "14px",
+                  lineHeight: "22px",
+                  fontWeight: 500,
+                  letterSpacing: "-0.1px",
+                }}
+              >
+                D - 20
+              </Text>
+            </Box>
+
+            <Text
+              render={
+                <h1
+                  style={{
+                    display: "-webkit-box",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    WebkitBoxOrient: "vertical",
+                    WebkitLineClamp: 2,
+                  }}
+                />
+              }
+              $css={{
+                color: "#FFFFFF",
+                fontFamily: TITLE_FONT,
+                fontSize: "24px",
+                lineHeight: "36px",
+                fontWeight: 700,
+                letterSpacing: "-0.3px",
+              }}
+            >
+              {HERO_TITLE}
+            </Text>
+
+            <HStack
+              $css={{
+                gap: "4px",
+                alignItems: "center",
+              }}
+            >
+              <UserOutlineIcon size={16} color="#FFFFFF" />
+              <Text
+                render={<p />}
+                $css={{
+                  color: "#FFFFFF",
+                  fontSize: "14px",
+                  lineHeight: "20px",
+                  fontWeight: 400,
+                  letterSpacing: "-0.1504px",
+                }}
+              >
+                5/8명
+              </Text>
+            </HStack>
+          </VStack>
         </Box>
 
         <VStack
           $css={{
-            position: "absolute",
-            left: "16px",
-            right: "16px",
-            bottom: "49px",
-            gap: "8px",
+            width: "100%",
+            maxWidth: `${CONTENT_WIDTH_PX}px`,
+            marginInline: "auto",
+            gap: "24px",
+            marginTop: "20px",
+            paddingBottom: "calc(148px + env(safe-area-inset-bottom))",
           }}
         >
-          <Box
-            $css={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "32px",
-              paddingInline: "12px",
-              borderRadius: "999px",
-              backgroundColor: "#EF6F25",
-              width: "fit-content",
-            }}
-          >
-            <Text
-              render={<p />}
-              $css={{
-                color: "#FFF6F1",
-                fontSize: "14px",
-                lineHeight: "22px",
-                fontWeight: 500,
-                letterSpacing: "-0.1px",
-              }}
-            >
-              D - 20
-            </Text>
-          </Box>
-
-          <Text
-            render={
-              <h1
-                style={{
-                  display: "-webkit-box",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  WebkitBoxOrient: "vertical",
-                  WebkitLineClamp: 2,
-                }}
-              />
-            }
-            $css={{
-              color: "#FFFFFF",
-              fontFamily: TITLE_FONT,
-              fontSize: "24px",
-              lineHeight: "36px",
-              fontWeight: 700,
-              letterSpacing: "-0.3px",
-            }}
-          >
-            {HERO_TITLE}
-          </Text>
-
-          <HStack
-            $css={{
-              gap: "4px",
-              alignItems: "center",
-            }}
-          >
-            <UserOutlineIcon size={16} color="#FFFFFF" />
-            <Text
-              render={<p />}
-              $css={{
-                color: "#FFFFFF",
-                fontSize: "14px",
-                lineHeight: "20px",
-                fontWeight: 400,
-                letterSpacing: "-0.1504px",
-              }}
-            >
-              5/8명
-            </Text>
-          </HStack>
-        </VStack>
-      </Box>
-
-      <VStack
-        $css={{
-          width: "100%",
-          maxWidth: `${CONTENT_WIDTH_PX}px`,
-          marginInline: "auto",
-          gap: "24px",
-          marginTop: "20px",
-          paddingBottom: "132px",
-        }}
-      >
         <SectionCard
           $css={{
             paddingTop: "19.993px",
@@ -590,14 +599,19 @@ export function ExperienceDetailPage() {
             />
           </HStack>
         </SectionCard>
-      </VStack>
+        </VStack>
+      </Box>
 
       <Box
         $css={{
-          position: "sticky",
-          bottom: 0,
+          // position: "sticky",
+          // bottom: 0,
+          position: "absolute",
+          left: "0",
+          right: "0",
+          bottom: "20px",
           zIndex: 20,
-          marginTop: "-89px",
+          // marginTop: "-89px",
         }}
       >
         <Box
@@ -607,6 +621,7 @@ export function ExperienceDetailPage() {
             paddingTop: "16.73px",
             paddingInline: "16px",
             paddingBottom: "16px",
+            boxShadow: "0px 4px 24px rgba(0, 0, 0, 0.08)",
           }}
         >
           <HStack

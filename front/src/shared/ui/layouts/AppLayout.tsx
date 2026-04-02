@@ -2,7 +2,7 @@ import { Box } from "@vapor-ui/core";
 import { Outlet } from "react-router-dom";
 
 const DESIGN_WIDTH_PX = 390;
-const DESIGN_HEIGHT_PX = 844;
+// const DESIGN_HEIGHT_PX = 844;
 
 export function AppLayout() {
   return (

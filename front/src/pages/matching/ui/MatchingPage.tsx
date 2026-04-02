@@ -396,8 +396,10 @@ export function MatchingPage() {
       $css={{
         position: "relative",
         width: "100%",
-        height: "100%",
-        minHeight: "100%",
+        // height: "100%",
+        // minHeight: "100%",
+        height: "100dvh",
+        minHeight: "100dvh",
         display: "flex",
         flexDirection: "column",
         backgroundColor: MATCHING_PAGE_BG,
@@ -448,7 +450,7 @@ export function MatchingPage() {
             marginInline: "auto",
             gap: "16px",
             paddingTop: "24px",
-            paddingBottom: "calc(116px + env(safe-area-inset-bottom))",
+            paddingBottom: "calc(140px + env(safe-area-inset-bottom))",
           }}
         >
           <Box
@@ -508,9 +510,9 @@ export function MatchingPage() {
           position: "absolute",
           left: "0",
           right: "0",
-          bottom: "0",
+          // bottom: "0",
+          bottom: "20px",
           paddingInline: "16px",
-          paddingBottom: "max(16px, env(safe-area-inset-bottom))",
           backgroundColor: "transparent",
         }}
       >

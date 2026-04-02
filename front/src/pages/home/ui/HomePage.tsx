@@ -194,10 +194,14 @@ export function HomePage() {
       render={<section />}
       $css={{
         width: "100%",
-        height: "100%",
+        // height: "100%",
+        height: "100dvh",
+        minHeight: "100dvh",
         backgroundColor: "var(--vapor-color-background-surface-200, #f7f7f7)",
         position: "relative",
         overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <Box
@@ -216,10 +220,10 @@ export function HomePage() {
 
       <Box
         $css={{
-          height: "calc(100% - 56px)",
+          flex: 1,
           overflowY: "auto",
           paddingTop: "28px",
-          paddingBottom: "100px",
+          paddingBottom: "calc(140px + env(safe-area-inset-bottom))",
           display: "flex",
           flexDirection: "column",
           gap: "42px",
@@ -430,7 +434,8 @@ export function HomePage() {
           position: "absolute",
           left: "0",
           right: "0",
-          bottom: "0",
+          // bottom: "0",
+          bottom: "20px",
           paddingInline: "16px",
         }}
       >
