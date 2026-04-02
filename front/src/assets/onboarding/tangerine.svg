@@ -1,0 +1,22 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 51.1248 54.675" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 2">
+<ellipse id="Ellipse 2" cx="25.1059" cy="32.9166" rx="25.1059" ry="21.7584" fill="var(--fill-0, #EC9A13)"/>
+<ellipse id="Ellipse 3" cx="25.1058" cy="32.9166" rx="23.8184" ry="20.6426" fill="url(#paint0_linear_0_4)"/>
+<ellipse id="Ellipse 9" cx="26.7796" cy="16.7373" rx="4.46327" ry="2.23163" fill="var(--fill-0, #4A3400)"/>
+<ellipse id="Ellipse 4" cx="34.0324" cy="33.4745" rx="0.557908" ry="1.11582" fill="var(--fill-0, #D67202)"/>
+<ellipse id="Ellipse 7" cx="38.4957" cy="29.0112" rx="0.557908" ry="1.11582" fill="var(--fill-0, #D67202)"/>
+<circle id="Ellipse 5" cx="41.2852" cy="36.8219" r="1.11582" fill="var(--fill-0, #D67202)"/>
+<ellipse id="Ellipse 8" cx="26.7796" cy="16.7372" rx="2.23163" ry="1.11582" fill="var(--fill-0, #645617)"/>
+<ellipse id="Ellipse 6" cx="35.706" cy="43.5168" rx="0.557908" ry="1.11582" transform="rotate(34.3513 35.706 43.5168)" fill="var(--fill-0, #D67202)"/>
+<g id="Group 1">
+<path id="Vector 1" d="M28.1198 13.1292C29.7353 9.11143 36.5978 1.93849 51.1248 5.38879C48.5355 11.1209 40.3095 20.694 28.1198 13.1292Z" fill="var(--fill-0, #19443A)"/>
+<path id="Vector 2" d="M29.747 12.6338C31.1317 9.19006 37.0139 3.04183 49.4656 5.99922C47.2462 10.9125 40.1953 19.118 29.747 12.6338Z" fill="var(--fill-0, #14483C)"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_4" x1="25.1058" y1="12.274" x2="25.1058" y2="53.5592" gradientUnits="userSpaceOnUse">
+<stop stop-color="#EC9A13"/>
+<stop offset="1" stop-color="#FB7A29"/>
+</linearGradient>
+</defs>
+</svg>

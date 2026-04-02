@@ -7,6 +7,14 @@
  * Source: https://www.figma.com/design/wFqRFUDLSyW2tD1JEejyzG/?node-id=42-8252
  */
 
+@font-face {
+  font-family: "EF_jejudoldam";
+  src: url("../../../EF_jejudoldam(TTF).ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 @layer vapor.theme {
   :root,
   [data-vapor-theme="light"] {

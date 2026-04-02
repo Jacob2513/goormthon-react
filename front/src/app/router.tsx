@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import { ComponentsPage } from "@/pages/components/ui/ComponentsPage";
 import { HomePage } from "@/pages/home/ui/HomePage";
+import { LoginPage } from "@/pages/login/ui/LoginPage";
 import { MentorPreviewPage } from "@/pages/mentor-preview/ui/MentorPreviewPage";
 import { NotFoundPage } from "@/pages/not-found/ui/NotFoundPage";
+import { OnboardingPage } from "@/pages/onboarding/ui/OnboardingPage";
 import { TokensPage } from "@/pages/tokens/ui/TokensPage";
 import { ROUTES } from "@/shared/config/routes";
 import { RootErrorBoundary } from "@/shared/ui/errors/RootErrorBoundary";
@@ -17,6 +19,14 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: ROUTES.onboarding.slice(1),
+        element: <OnboardingPage />,
+      },
+      {
+        path: ROUTES.login.slice(1),
+        element: <LoginPage />,
       },
       {
         path: ROUTES.components.slice(1),
