@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Box, Button, Card, Text, VStack } from "@vapor-ui/core";
-import { ROUTES } from "../../../shared/config/routes";
+import { ROUTES } from "@/shared/config/routes";
 
 export function NotFoundPage() {
   return (

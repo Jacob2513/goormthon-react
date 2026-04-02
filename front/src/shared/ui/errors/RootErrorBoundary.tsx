@@ -13,7 +13,7 @@ import {
   useNavigate,
   useRouteError,
 } from "react-router-dom";
-import { ROUTES } from "../../config/routes";
+import { ROUTES } from "@/shared/config/routes";
 
 const getErrorMessage = (error: unknown) => {
   if (isRouteErrorResponse(error)) {
