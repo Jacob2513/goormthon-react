@@ -14,25 +14,18 @@ import { OnboardingArtwork } from "./OnboardingArtwork";
 export function OnboardingPage() {
   return (
     <Box
-      render={<main />}
       $css={{
-        width: "100%",
+        position: "relative",
         minHeight: "100dvh",
+        overflow: "hidden",
         background:
           "radial-gradient(circle at top, rgba(11, 14, 43, 0.92), #020311 60%)",
       }}
     >
-      <Box
+      <VStack
         $css={{
-          position: "relative",
-          width: "100%",
-          maxWidth: "390px",
-          margin: "0 auto",
-          height: "100dvh",
           minHeight: "100dvh",
-          maxHeight: "844px",
-          overflow: "hidden",
-          background: "linear-gradient(180deg, #060715 0%, #00032A 100%)",
+          position: "relative",
         }}
       >
         <Box
@@ -79,9 +72,9 @@ export function OnboardingPage() {
           $css={{
             position: "relative",
             zIndex: 2,
-            height: "100%",
-            paddingLeft: "max(39px, calc(env(safe-area-inset-left) + 16px))",
-            paddingRight: "max(39px, calc(env(safe-area-inset-right) + 16px))",
+            flex: 1,
+            paddingLeft: "39px",
+            paddingRight: "39px",
             paddingTop: "max(76px, env(safe-area-inset-top))",
             paddingBottom: "max(52px, env(safe-area-inset-bottom))",
             justifyContent: "space-between",
@@ -178,7 +171,7 @@ export function OnboardingPage() {
             </Button>
           </VStack>
         </VStack>
-      </Box>
+      </VStack>
     </Box>
   );
 }
