@@ -219,10 +219,11 @@ export function HomePage() {
           height: "calc(100% - 56px)",
           overflowY: "auto",
           paddingTop: "28px",
-          paddingBottom: "60px",
+          paddingBottom: "100px",
           display: "flex",
           flexDirection: "column",
           gap: "42px",
+          paddingInline: "16px",
         }}
       >
         <Box
@@ -385,7 +386,6 @@ export function HomePage() {
           }}
         >
           <Text
-            render={<h2 />}
             $css={{
               paddingLeft: "4px",
               fontSize: "18px",
@@ -431,6 +431,7 @@ export function HomePage() {
           left: "0",
           right: "0",
           bottom: "0",
+          paddingInline: "16px",
         }}
       >
         <BottomNavigation activeTab={activeTab} onTabChange={setActiveTab} />
