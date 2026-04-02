@@ -1,6 +1,8 @@
 export const ROUTES = {
   home: "/",
   matching: "/matching",
+  experienceDetail: "/experiences/haenyeo",
+  reservation: "/reservation",
   onboarding: "/onboarding",
   register: "/register",
   login: "/login",

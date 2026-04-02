@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { ComponentsPage } from "@/pages/components/ui/ComponentsPage";
+import { ExperienceDetailPage } from "@/pages/experience-detail";
 import { HomePage } from "@/pages/home/ui/HomePage";
 import { LoginPage } from "@/pages/login/ui/LoginPage";
 import { MatchingPage } from "@/pages/matching/ui/MatchingPage";
@@ -7,6 +8,7 @@ import { MentorPreviewPage } from "@/pages/mentor-preview/ui/MentorPreviewPage";
 import { NotFoundPage } from "@/pages/not-found/ui/NotFoundPage";
 import { OnboardingPage } from "@/pages/onboarding/ui/OnboardingPage";
 import { RegisterPage } from "@/pages/register/RegisterPage";
+import { ReservationPage } from "@/pages/reservation";
 import { TokensPage } from "@/pages/tokens/ui/TokensPage";
 import { ROUTES } from "@/shared/config/routes";
 import { RootErrorBoundary } from "@/shared/ui/errors/RootErrorBoundary";
@@ -25,6 +27,14 @@ export const router = createBrowserRouter([
       {
         path: ROUTES.matching.slice(1),
         element: <MatchingPage />,
+      },
+      {
+        path: ROUTES.experienceDetail.slice(1),
+        element: <ExperienceDetailPage />,
+      },
+      {
+        path: ROUTES.reservation.slice(1),
+        element: <ReservationPage />,
       },
       {
         path: ROUTES.onboarding.slice(1),
