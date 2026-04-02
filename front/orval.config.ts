@@ -1,26 +1,37 @@
+/// <reference types="node" />
+
 import { defineConfig } from "orval";
 import { config } from "dotenv";
 
 config({ path: ".env.local" });
 
-const specUrl = process.env.VITE_OPENAPI_SPEC_URL;
+const DEFAULT_OPENAPI_SPEC_URL =
+  "https://junhugae.goorm.training/api/v3/api-docs";
 
-if (!specUrl) {
-  throw new Error(
-    "VITE_OPENAPI_SPEC_URL is required. Add it to .env.local (see .env.example).",
-  );
-}
+const specUrl = process.env.VITE_OPENAPI_SPEC_URL ?? DEFAULT_OPENAPI_SPEC_URL;
 
 export default defineConfig({
   api: {
-    input: specUrl,
-    output: {
-      mode: "split",
-      target: "./src/api/generated",
-      baseUrl: "",
-      client: "react-query",
-      mock: false,
+    input: {
+      target: specUrl,
       override: {
+        transformer: "./src/api/orval/input-transformer.ts",
+      },
+    },
+    output: {
+      mode: "tags-split",
+      target: "./src/api/generated/index.ts",
+      schemas: "./src/api/generated/model",
+      client: "react-query",
+      clean: true,
+      mock: false,
+      tsconfig: "./tsconfig.json",
+      // Keep generated paths relative. Runtime base URL is resolved in fetcher.ts.
+      baseUrl: "",
+      override: {
+        fetch: {
+          includeHttpResponseReturnType: false,
+        },
         mutator: {
           path: "./src/api/fetcher.ts",
           name: "customFetch",
