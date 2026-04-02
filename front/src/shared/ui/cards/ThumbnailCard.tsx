@@ -17,15 +17,11 @@ export type ThumbnailCardProps = {
   caption: string;
 };
 
-const TITLE_CLAMP_STYLES = {
-  display: "-webkit-box",
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  WebkitBoxOrient: "vertical",
-  WebkitLineClamp: 2,
-} as const;
-
 const SINGLE_LINE_ELLIPSIS_STYLES = {
+  width: "100%",
+  display: "block",
+  minWidth: 0,
+  maxWidth: "100%",
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
@@ -100,16 +96,21 @@ export function ThumbnailCard({
           $css={{
             minHeight: "107px",
             padding: "16px",
+            minWidth: 0,
           }}
         >
           <VStack
             $css={{
               gap: "2px",
+              width: "100%",
+              minWidth: 0,
             }}
           >
             <VStack
               $css={{
                 gap: "4px",
+                width: "100%",
+                minWidth: 0,
               }}
             >
               <Text
@@ -117,7 +118,7 @@ export function ThumbnailCard({
                 typography="heading5"
                 $css={{
                   color: "#393939",
-                  ...TITLE_CLAMP_STYLES,
+                  ...SINGLE_LINE_ELLIPSIS_STYLES,
                 }}
               >
                 {title}
