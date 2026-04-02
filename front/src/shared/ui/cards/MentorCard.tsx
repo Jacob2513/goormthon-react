@@ -1,263 +1,225 @@
 import {
   Box,
   Card,
-  HStack,
-  IconButton,
   Text,
   VStack,
 } from "@vapor-ui/core";
-import {
-  HeartIcon,
-  HeartOutlineIcon,
-  LocationOutlineIcon,
-} from "@vapor-ui/icons";
-import type { MouseEvent } from "react";
 import { Link } from "react-router-dom";
 
 export type MentorCardProps = {
   to: string;
   imageSrc: string;
   imageAlt: string;
-  experienceLabel: string;
+  badgeLabel: string;
   title: string;
-  mentorName: string;
-  mentorAgeLabel: string;
+  metaLabel: string;
   description: string;
   location: string;
-  likeCount: number;
   tags: readonly string[];
-  isBookmarked?: boolean;
-  onBookmarkToggle?: () => void;
 };
+
+const SINGLE_LINE_ELLIPSIS_STYLES = {
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+} as const;
+
+const DESCRIPTION_CLAMP_STYLES = {
+  display: "-webkit-box",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  WebkitBoxOrient: "vertical",
+  WebkitLineClamp: 2,
+} as const;
 
 export function MentorCard({
   to,
   imageSrc,
   imageAlt,
-  experienceLabel,
+  badgeLabel,
   title,
-  mentorName,
-  mentorAgeLabel,
+  metaLabel,
   description,
   location,
-  likeCount,
   tags,
-  isBookmarked = false,
-  onBookmarkToggle,
 }: MentorCardProps) {
-  const handleBookmarkClick = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    event.stopPropagation();
-    onBookmarkToggle?.();
-  };
-
   return (
-    <Card.Root
+    <Box
+      render={<Link to={to} aria-label={`${title} 상세 보기`} />}
       $css={{
-        position: "relative",
+        display: "block",
         width: "100%",
-        maxWidth: "355px",
-        overflow: "hidden",
-        borderRadius: "16px",
-        border: "1px solid",
-        borderColor: "$border-normal",
-        backgroundColor: "$bg-canvas-100",
-        boxShadow: "0 20px 40px rgba(15, 23, 42, 0.08)",
+        color: "inherit",
+        textDecoration: "none",
       }}
     >
-      <Box
-        render={<Link to={to} aria-label={`${title} 상세 보기`} />}
+      <Card.Root
         $css={{
-          display: "block",
-          color: "inherit",
+          width: "100%",
+          minHeight: "405px",
+          overflow: "hidden",
+          borderRadius: "16px",
+          border: "0.735px solid #E1E1E1",
+          backgroundColor: "#FFFFFF",
+          boxShadow: "none",
         }}
       >
         <Box
           $css={{
             position: "relative",
-            aspectRatio: "355 / 192",
+            aspectRatio: "356 / 192",
             overflow: "hidden",
-            backgroundColor: "$bg-secondary-100",
+            backgroundColor: "#D8E6EC",
           }}
         >
           <Box
             render={<img src={imageSrc} alt={imageAlt} />}
             $css={{
+              display: "block",
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              display: "block",
             }}
           />
           <Box
             $css={{
               position: "absolute",
-              left: "$150",
-              bottom: "$150",
-              padding: "0 $150",
-              height: "28px",
+              top: "12px",
+              right: "12px",
               display: "inline-flex",
               alignItems: "center",
-              borderRadius: "9999px",
-              backgroundColor: "rgba(255,255,255,0.92)",
-              boxShadow: "0 8px 20px rgba(15, 23, 42, 0.12)",
+              justifyContent: "center",
+              height: "32px",
+              paddingInline: "12px",
+              borderRadius: "999px",
+              backgroundColor: "#C2E8F0",
             }}
           >
             <Text
-              typography="body3"
+              typography="subtitle1"
               $css={{
-                color: "$fg-secondary-200",
-                fontWeight: 600,
+                color: "#0D8298",
+                fontWeight: 500,
+                letterSpacing: "-0.1px",
               }}
             >
-              {experienceLabel}
+              {badgeLabel}
             </Text>
           </Box>
         </Box>
 
         <Card.Body
           $css={{
-            padding: "$250",
+            padding: "20px",
           }}
         >
-          <VStack $css={{ gap: "$200" }}>
-            <VStack $css={{ gap: "$050" }}>
-              <Text
-                render={<h2 />}
-                typography="heading5"
+          <VStack
+            $css={{
+              gap: "12px",
+              alignItems: "stretch",
+            }}
+          >
+            <VStack
+              $css={{
+                gap: "14px",
+                alignItems: "stretch",
+              }}
+            >
+              <VStack
                 $css={{
-                  color: "$fg-secondary-200",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
+                  gap: "12px",
+                  alignItems: "stretch",
                 }}
               >
-                {title}
-              </Text>
-              <Text typography="body2" foreground="normal-100">
-                {mentorName} 멘토 · {mentorAgeLabel}
+                <VStack
+                  $css={{
+                    gap: "4px",
+                    alignItems: "stretch",
+                  }}
+                >
+                  <Text
+                    render={<h3 />}
+                    typography="heading5"
+                    $css={{
+                      color: "#393939",
+                      letterSpacing: "-0.1px",
+                      ...SINGLE_LINE_ELLIPSIS_STYLES,
+                    }}
+                  >
+                    {title}
+                  </Text>
+                  <Text
+                    typography="subtitle1"
+                    $css={{
+                      color: "#767676",
+                      letterSpacing: "-0.1px",
+                      ...SINGLE_LINE_ELLIPSIS_STYLES,
+                    }}
+                  >
+                    {metaLabel}
+                  </Text>
+                </VStack>
+
+                <Text
+                  typography="subtitle1"
+                  $css={{
+                    color: "#45556C",
+                    letterSpacing: "-0.1px",
+                    minHeight: "44px",
+                    ...DESCRIPTION_CLAMP_STYLES,
+                  }}
+                >
+                  {description}
+                </Text>
+              </VStack>
+
+              <Text
+                typography="body3"
+                $css={{
+                  color: "#A3A3A3",
+                  letterSpacing: "-0.1px",
+                  ...SINGLE_LINE_ELLIPSIS_STYLES,
+                }}
+              >
+                {location}
               </Text>
             </VStack>
 
-            <Text
-              typography="body2"
-              foreground="normal-100"
+            <Box
               $css={{
-                minHeight: "40px",
-                overflow: "hidden",
-              }}
-            >
-              {description}
-            </Text>
-
-            <HStack
-              $css={{
-                gap: "$150",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "4px",
                 alignItems: "center",
-                flexWrap: "wrap",
-              }}
-            >
-              <HStack
-                $css={{
-                  gap: "$050",
-                  alignItems: "center",
-                  minWidth: 0,
-                }}
-              >
-                <LocationOutlineIcon
-                  size={14}
-                  aria-hidden="true"
-                  color="var(--vapor-color-foreground-normal-100)"
-                />
-                <Text
-                  typography="body3"
-                  foreground="normal-100"
-                  $css={{
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {location}
-                </Text>
-              </HStack>
-              <HStack
-                $css={{
-                  gap: "$050",
-                  alignItems: "center",
-                  flexShrink: 0,
-                }}
-              >
-                <HeartOutlineIcon
-                  size={14}
-                  aria-hidden="true"
-                  color="var(--vapor-color-foreground-normal-100)"
-                />
-                <Text typography="body3" foreground="normal-100">
-                  {likeCount}
-                </Text>
-              </HStack>
-            </HStack>
-
-            <HStack
-              $css={{
-                gap: "$100",
-                flexWrap: "wrap",
               }}
             >
               {tags.map((tag) => (
                 <Box
                   key={tag}
                   $css={{
-                    padding: "0 $100",
-                    height: "24px",
                     display: "inline-flex",
                     alignItems: "center",
-                    borderRadius: "9999px",
-                    backgroundColor: "#F0F9FF",
+                    justifyContent: "center",
+                    padding: "3px 8px",
+                    borderRadius: "999px",
+                    backgroundColor: "#EEF9FB",
                   }}
                 >
                   <Text
                     typography="body3"
                     $css={{
-                      color: "#0069A8",
-                      fontWeight: 600,
-                      whiteSpace: "nowrap",
+                      color: "#17A3BA",
+                      fontWeight: 500,
                     }}
                   >
                     {tag}
                   </Text>
                 </Box>
               ))}
-            </HStack>
+            </Box>
           </VStack>
         </Card.Body>
-      </Box>
-
-      <IconButton
-        aria-label={isBookmarked ? "찜 해제" : "찜 추가"}
-        shape="circle"
-        variant="ghost"
-        colorPalette="contrast"
-        onClick={handleBookmarkClick}
-        disabled={!onBookmarkToggle}
-        $css={{
-          position: "absolute",
-          top: "$150",
-          right: "$150",
-          width: "40px",
-          height: "40px",
-          backgroundColor: "rgba(255,255,255,0.9)",
-          color: "$fg-secondary-200",
-          boxShadow: "0 10px 24px rgba(15, 23, 42, 0.14)",
-        }}
-      >
-        {isBookmarked ? (
-          <HeartIcon size={20} aria-hidden="true" />
-        ) : (
-          <HeartOutlineIcon size={20} aria-hidden="true" />
-        )}
-      </IconButton>
-    </Card.Root>
+      </Card.Root>
+    </Box>
   );
 }

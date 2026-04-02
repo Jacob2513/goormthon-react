@@ -1,16 +1,17 @@
-﻿import { useState } from "react";
-import { Badge, Box, Text } from "@vapor-ui/core";
+import adImage from "@/shared/assets/ad.png";
+import haenyeoIcon from "@/shared/assets/haenyeoIcon.svg";
+import horseIcon from "@/shared/assets/horseIcon.svg";
+import logo from "@/shared/assets/logo.svg";
+import mandarinIcon from "@/shared/assets/mandarinIcon.svg";
+import stoneIcon from "@/shared/assets/stoneIcon.svg";
+import { ThumbnailCard, type ThumbnailCardProps } from "@/shared/ui/cards";
 import {
   BottomNavigation,
   type BottomNavTab,
 } from "@/shared/ui/navigation/BottomNavigation";
-import { ThumbnailCard, type ThumbnailCardProps } from "@/shared/ui/cards";
-import logo from "@/shared/assets/logo.svg";
-import adImage from "@/shared/assets/ad.png";
-import haenyeoIcon from "@/shared/assets/haenyeoIcon.svg";
-import stoneIcon from "@/shared/assets/stoneIcon.svg";
-import mandarinIcon from "@/shared/assets/mandarinIcon.svg";
-import horseIcon from "@/shared/assets/horseIcon.svg";
+import { Badge, Box, Text } from "@vapor-ui/core";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SMALL_CARD_IMAGE_URL =
   "https://www.figma.com/api/mcp/asset/acf1766d-7833-45cb-9d64-368c486a2af0";
@@ -187,6 +188,7 @@ function LargeExperienceCard({
 }
 
 export function HomePage() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<BottomNavTab>("home");
 
   return (

@@ -343,3 +343,12 @@ body::-webkit-scrollbar,
   height: 0;
   display: none;
 }
+
+.u-hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.u-hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

@@ -1,3 +1,4 @@
+import matchingIcon from "@/shared/assets/matchingIcon.svg";
 import { Box, IconButton, Text } from "@vapor-ui/core";
 import {
   HomeIcon,
@@ -5,10 +6,10 @@ import {
   UserIcon,
   UserOutlineIcon,
 } from "@vapor-ui/icons";
-import matchingIcon from "@/shared/assets/matchingIcon.svg";
 
 export type BottomNavTab = "home" | "my";
 
+const NAV_WIDTH_PX = 358;
 const NAV_HEIGHT_PX = 80;
 const NAV_RADIUS_PX = 18;
 const NAV_TOP_OFFSET_PX = 20;
@@ -56,7 +57,6 @@ export function BottomNavigation({
       $css={{
         position: "relative",
         width: "100%",
-        // paddingBottom: "16px",
       }}
     >
       <Box
@@ -72,6 +72,8 @@ export function BottomNavigation({
           position: "relative",
           zIndex: 2,
           width: "100%",
+          maxWidth: `${NAV_WIDTH_PX}px`,
+          marginInline: "auto",
           height: `${NAV_HEIGHT_PX}px`,
           marginTop: `${NAV_TOP_OFFSET_PX}px`,
           borderRadius: `${NAV_RADIUS_PX}px`,

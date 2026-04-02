@@ -6,8 +6,8 @@ import {
   Text,
   VStack,
 } from "@vapor-ui/core";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import mentorCardImage from "@/assets/matching/mentor-card.jpg";
 import { ROUTES } from "@/shared/config/routes";
 import {
   MentorCard,
@@ -19,48 +19,39 @@ import {
 const SAMPLE_MENTORS: readonly MentorCardProps[] = [
   {
     to: ROUTES.mentorPreview,
-    imageSrc:
-      "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "제주 돌담과 숲 풍경",
-    experienceLabel: "38년",
+    imageSrc: mentorCardImage,
+    imageAlt: "제주 해녀 작업 현장",
+    badgeLabel: "45년 이어온",
+    title: "제주의 말을 돌보는 하루",
+    metaLabel: "김** 해녀 · D-20",
+    description:
+      "제주 바다의 보물을 캐는 해녀의 삶을 배워보세요. 물질의 기술과 해산물에 대한 깊은 지식을 전수합니다.",
+    location: "제주시 구좌읍",
+    tags: ["물질", "해산물 채취", "바다 안전"],
+  },
+  {
+    to: ROUTES.mentorPreview,
+    imageSrc: mentorCardImage,
+    imageAlt: "제주 돌담 작업 현장",
+    badgeLabel: "25년 이어온",
     title: "돌담 장인",
-    mentorName: "박철수",
-    mentorAgeLabel: "72세",
+    metaLabel: "김** 장인 · D-20",
     description:
-      "제주의 상징인 돌담을 쌓는 전통 기술을 배워보세요. 바람을 통과시키는 제주만의 독특한 쌓기 방식을 알려드립니다.",
-    location: "서귀포시 성산읍",
-    likeCount: 98,
-    tags: ["돌 선별", "쌓기 기술", "구조 설계"],
+      "제주의 상징인 돌담을 쌓는 전통 기술을 배워보세요. 바람을 통과시키는 제주만의 독특한 쌓기 방식을 배웁니다.",
+    location: "제주시 구좌읍",
+    tags: ["쌓기", "바람길 설계", "제주 돌"],
   },
   {
     to: ROUTES.mentorPreview,
-    imageSrc:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "나무 공방 작업대와 재료",
-    experienceLabel: "24년",
-    title: "목공 공예 멘토",
-    mentorName: "김연희",
-    mentorAgeLabel: "61세",
+    imageSrc: mentorCardImage,
+    imageAlt: "제주 말 농장 체험 장면",
+    badgeLabel: "25년 이어온",
+    title: "말 농장 운영자 이름이 길어졌을 때 카드 처리 테스트",
+    metaLabel: "김** 농장주 · D-20",
     description:
-      "생활 소품부터 전통 짜맞춤까지, 손의 감각으로 배우는 목공 수업입니다. 도구 선택과 마감 노하우를 함께 익힙니다.",
-    location: "제주시 한경면 저지리",
-    likeCount: 41,
-    tags: ["재료 이해", "짜맞춤", "표면 마감"],
-  },
-  {
-    to: ROUTES.mentorPreview,
-    imageSrc:
-      "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "전통 직조 재료와 작업 장면",
-    experienceLabel: "12년",
-    title: "전통 직조 입문 클래스 이름이 길어졌을 때 테스트",
-    mentorName: "오해린",
-    mentorAgeLabel: "58세",
-    description:
-      "긴 텍스트와 긴 위치명을 테스트하기 위한 샘플입니다. 직조의 기본 원리부터 제주 색감에 맞춘 실 조합까지 차근차근 설명합니다.",
-    location: "제주시 조천읍 선흘리 공예문화복합센터",
-    likeCount: 127,
-    tags: ["실 염색", "직조 구조", "색 조합", "패턴 해석"],
+      "제주의 전통 말농장 일을 실전 기술로 배워보세요. 사육과 관리부터 관광 연계 운영까지 함께 익힙니다.",
+    location: "서귀포시 표선면",
+    tags: ["사육", "목장 관리", "현장 운영", "체험"],
   },
 ] as const;
 
@@ -98,19 +89,6 @@ const SAMPLE_THUMBNAILS: readonly ThumbnailCardProps[] = [
 ] as const;
 
 export function ComponentsPage() {
-  const [bookmarks, setBookmarks] = useState<Record<number, boolean>>({
-    0: false,
-    1: true,
-    2: false,
-  });
-
-  const toggleBookmark = (index: number) => {
-    setBookmarks((current) => ({
-      ...current,
-      [index]: !current[index],
-    }));
-  };
-
   return (
     <Box
       render={<main />}
@@ -143,8 +121,8 @@ export function ComponentsPage() {
                   공통 컴포넌트 검증 페이지
                 </Text>
                 <Text typography="body2" foreground="normal-100">
-                  MentorCard와 ThumbnailCard의 기본 상태와 길이 변화, 상호작용을
-                  한 화면에서 확인할 수 있도록 구성했습니다.
+                  MentorCard와 ThumbnailCard를 Figma 기준 카드 레이아웃으로
+                  확인할 수 있도록 구성했습니다.
                 </Text>
               </VStack>
               <HStack
@@ -164,10 +142,10 @@ export function ComponentsPage() {
 
         <VStack $css={{ gap: "$150" }}>
           <Text render={<h2 />} typography="heading5">
-            Interactive States
+            MentorCard
           </Text>
           <Text typography="body2" foreground="normal-100">
-            카드 전체 클릭, 찜 버튼 분리, 길어진 텍스트 처리까지 같이 점검합니다.
+            matching 페이지에 사용하는 카드 디자인과 긴 텍스트 처리를 점검합니다.
           </Text>
         </VStack>
 
@@ -182,25 +160,9 @@ export function ComponentsPage() {
             <MentorCard
               key={`${mentor.title}-${index}`}
               {...mentor}
-              isBookmarked={bookmarks[index]}
-              onBookmarkToggle={() => toggleBookmark(index)}
             />
           ))}
         </HStack>
-
-        <VStack $css={{ gap: "$150" }}>
-          <Text render={<h2 />} typography="heading5">
-            Read-only Variant
-          </Text>
-          <Text typography="body2" foreground="normal-100">
-            `onBookmarkToggle` 없이 렌더링했을 때의 표시 상태입니다.
-          </Text>
-        </VStack>
-
-        <MentorCard
-          {...SAMPLE_MENTORS[1]}
-          isBookmarked
-        />
 
         <VStack $css={{ gap: "$150" }}>
           <Text render={<h2 />} typography="heading5">
