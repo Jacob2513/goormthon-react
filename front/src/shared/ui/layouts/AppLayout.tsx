@@ -18,7 +18,8 @@ export function AppLayout() {
         render={<main />}
         $css={{
           width: `min(${DESIGN_WIDTH_PX}px, 100vw)`,
-          height: `min(${DESIGN_HEIGHT_PX}px, 100dvh)`,
+          // height: `min(${DESIGN_HEIGHT_PX}px, 100dvh)`,
+          height: "100dvh",
           background:
             "linear-gradient(to bottom, var(--vapor-color-background-base-white) 0 48px, var(--vapor-color-background-surface-200) 48px calc(100% - 34px), var(--vapor-color-background-base-white) calc(100% - 34px) 100%)",
           boxSizing: "border-box",

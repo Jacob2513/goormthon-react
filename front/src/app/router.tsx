@@ -1,4 +1,3 @@
-import { createBrowserRouter } from "react-router-dom";
 import { ComponentsPage } from "@/pages/components/ui/ComponentsPage";
 import { ExperienceDetailPage } from "@/pages/experience-detail";
 import { HomePage } from "@/pages/home/ui/HomePage";
@@ -12,12 +11,12 @@ import { ReservationPage } from "@/pages/reservation";
 import { TokensPage } from "@/pages/tokens/ui/TokensPage";
 import { ROUTES } from "@/shared/config/routes";
 import { RootErrorBoundary } from "@/shared/ui/errors/RootErrorBoundary";
-import { AppLayout } from "@/shared/ui/layouts/AppLayout";
+import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
   {
     path: ROUTES.home,
-    element: <AppLayout />,
+    // element: <AppLayout />,
     errorElement: <RootErrorBoundary />,
     children: [
       {

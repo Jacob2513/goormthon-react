@@ -12,7 +12,6 @@ export type BottomNavTab = "home" | "my";
 
 const NAV_WIDTH_PX = 358;
 const NAV_HEIGHT_PX = 80;
-const NAV_RADIUS_PX = 18;
 const NAV_TOP_OFFSET_PX = 20;
 const TAB_ROW_WIDTH_PX = 240;
 

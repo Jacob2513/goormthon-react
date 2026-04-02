@@ -1,55 +1,34 @@
 import { Box, Text, VStack } from "@vapor-ui/core";
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import backArrowIcon from "@/assets/reservation/back-arrow.svg";
 import calendarIcon from "@/assets/reservation/calendar.svg";
-import heroImage from "@/assets/reservation/hero.jpg";
+import infoIcon from "@/assets/reservation/info.svg";
 import peopleIcon from "@/assets/reservation/people.svg";
+import summaryImage from "@/assets/reservation/summary-image.png";
 import { ROUTES } from "@/shared/config/routes";
 
 const PAGE_BACKGROUND = "var(--vapor-color-background-surface-200, #f7f7f7)";
 const SURFACE_WHITE = "rgba(255, 255, 255, 0.9)";
 const BORDER_COLOR = "#E1E1E1";
 const PRIMARY_TEXT = "#0F172B";
+const TITLE_TEXT = "#393939";
 const SECONDARY_TEXT = "#767676";
-const BODY_TEXT = "#314158";
-const ACCENT_BLUE = "#1CB3CB";
+const DARK_SURFACE = "#262626";
+const CTA_BACKGROUND = "#C2E8F0";
 const CARD_RADIUS = "16px";
-const SMALL_RADIUS = "14px";
+const CTA_RADIUS = "14px";
 const CONTENT_WIDTH = "358px";
-const EXPLORE_TITLE = "제주의 말을 돌보는 하루";
-const EXPLORE_SUBTITLE = "해녀 물질 체험";
-const EXPLORE_MENTOR = "김영숙 해녀";
+const BUTTON_HEIGHT = "55.981px";
+const SUMMARY_TITLE = "금녕 해녀와 함께하는 전복따기";
+const SUMMARY_MENTOR = "김영숙 해녀";
 const UNIT_PRICE = 50000;
 
 function formatCurrency(amount: number) {
-  return `₩${new Intl.NumberFormat("ko-KR").format(amount)}`;
+  return `${new Intl.NumberFormat("ko-KR").format(amount)}원`;
 }
 
-function SectionCard({
-  children,
-  height,
-}: {
-  children: ReactNode;
-  height: string;
-}) {
-  return (
-    <Box
-      $css={{
-        width: "100%",
-        height,
-        borderRadius: CARD_RADIUS,
-        border: `1px solid ${BORDER_COLOR}`,
-        backgroundColor: "#FFFFFF",
-        overflow: "hidden",
-      }}
-    >
-      {children}
-    </Box>
-  );
-}
-
-function SectionHeader({
+function SectionTitle({
   iconSrc,
   title,
 }: {
@@ -62,8 +41,6 @@ function SectionHeader({
         display: "flex",
         alignItems: "center",
         gap: "8px",
-        width: "100%",
-        height: "28px",
       }}
     >
       <Box
@@ -78,13 +55,13 @@ function SectionHeader({
       <Text
         render={<h2 />}
         $css={{
-          color: PRIMARY_TEXT,
+          color: TITLE_TEXT,
           fontFamily:
             '"Inter", "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", sans-serif',
           fontSize: "18px",
-          lineHeight: "28px",
+          lineHeight: "26px",
           fontWeight: 700,
-          letterSpacing: "-0.4395px",
+          letterSpacing: "-0.1px",
         }}
       >
         {title}
@@ -104,12 +81,12 @@ function CounterButton({
     <Box
       render={<button type="button" onClick={onClick} aria-label={label} />}
       $css={{
-        width: "40px",
-        height: "40px",
+        width: "39.998px",
+        height: "39.998px",
         border: "none",
         borderRadius: "999px",
-        backgroundColor: "#F1F5F9",
-        color: "#0A0A0A",
+        backgroundColor: "#F7F7F7",
+        color: "#262626",
         display: "grid",
         placeItems: "center",
         cursor: "pointer",
@@ -127,6 +104,41 @@ function CounterButton({
         }}
       >
         {label}
+      </Text>
+    </Box>
+  );
+}
+
+function SelectButton() {
+  return (
+    <Box
+      render={<button type="button" aria-label="날짜 선택" />}
+      $css={{
+        minWidth: "52px",
+        height: "32px",
+        paddingInline: "12px",
+        borderRadius: "8px",
+        border: "1px solid #C6C6C6",
+        backgroundColor: "#FFFFFF",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
+        color: "#5D5D5D",
+      }}
+    >
+      <Text
+        $css={{
+          color: "inherit",
+          fontFamily:
+            '"Inter", "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", sans-serif',
+          fontSize: "14px",
+          lineHeight: "22px",
+          fontWeight: 500,
+          letterSpacing: "-0.1px",
+        }}
+      >
+        선택
       </Text>
     </Box>
   );
@@ -151,17 +163,21 @@ export function ReservationPage() {
       $css={{
         position: "relative",
         width: "100%",
-        minHeight: "100%",
+        // height: "100%",
+        // minHeight: "100%",
+        height: "100dvh",
+        minHeight: "100dvh",
         backgroundColor: PAGE_BACKGROUND,
-        overflowX: "hidden",
+        overflow: "hidden",
       }}
     >
       <Box
         $css={{
           position: "absolute",
-          left: "0",
           top: "0",
-          width: "100%",
+          left: "0",
+          right: "0",
+          zIndex: 2,
         }}
       >
         <Box
@@ -172,14 +188,13 @@ export function ReservationPage() {
             opacity: 0.9,
           }}
         />
+
         <Box
           $css={{
             width: "100%",
             height: "56px",
-            paddingLeft: "16px",
-            paddingRight: "16px",
-            paddingTop: "8px",
-            paddingBottom: "8px",
+            paddingInline: "16px",
+            paddingBlock: "8px",
             backgroundColor: "#FFFFFF",
           }}
         >
@@ -197,8 +212,8 @@ export function ReservationPage() {
                 <button type="button" onClick={handleBack} aria-label="뒤로가기" />
               }
               $css={{
-                width: "40px",
-                height: "40px",
+                width: "39.998px",
+                height: "39.998px",
                 border: "none",
                 borderRadius: "999px",
                 backgroundColor: SURFACE_WHITE,
@@ -210,12 +225,13 @@ export function ReservationPage() {
               <Box
                 render={<img src={backArrowIcon} alt="" aria-hidden="true" />}
                 $css={{
-                  width: "20px",
-                  height: "20px",
+                  width: "19.993px",
+                  height: "19.993px",
                   display: "block",
                 }}
               />
             </Box>
+
             <Text
               render={<h1 />}
               $css={{
@@ -231,84 +247,82 @@ export function ReservationPage() {
             >
               예약하기
             </Text>
+
             <Box $css={{ width: "40px", height: "40px" }} />
           </Box>
         </Box>
       </Box>
 
-      <VStack
+      <Box
         $css={{
           width: "100%",
-          maxWidth: CONTENT_WIDTH,
-          marginInline: "auto",
-          marginTop: "131px",
-          gap: "20px",
-          paddingBottom: "32px",
+          // height: "100%",
+          height: "100dvh",
+          overflowY: "auto",
         }}
       >
-        <SectionCard height="187.971px">
+        <VStack
+          $css={{
+            width: "100%",
+            maxWidth: CONTENT_WIDTH,
+            marginInline: "auto",
+            gap: "30px",
+            paddingTop: "131px",
+            paddingBottom: "calc(116px + env(safe-area-inset-bottom))",
+          }}
+        >
           <VStack
             $css={{
-              gap: "15.995px",
-              paddingTop: "23.992px",
-              paddingLeft: "23.992px",
-              paddingRight: "23.992px",
+              width: "100%",
+              gap: "12px",
             }}
           >
-            <Text
-              render={<h2 />}
-              $css={{
-                color: "#393939",
-                fontFamily:
-                  '"Inter", "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", sans-serif',
-                fontSize: "18px",
-                lineHeight: "26px",
-                fontWeight: 700,
-                letterSpacing: "-0.1px",
-              }}
-            >
-              {EXPLORE_TITLE}
-            </Text>
-
             <Box
               $css={{
                 display: "flex",
-                alignItems: "flex-start",
+                alignItems: "center",
                 gap: "15.995px",
+                width: "100%",
               }}
             >
               <Box
-                render={<img src={heroImage} alt="" />}
+                render={
+                  <img
+                    src={summaryImage}
+                    alt="금녕 해녀와 함께하는 전복따기 대표 이미지"
+                  />
+                }
                 $css={{
                   width: "90px",
                   height: "90px",
-                  borderRadius: "14px",
+                  borderRadius: CTA_RADIUS,
                   objectFit: "cover",
                   display: "block",
                   flexShrink: 0,
+                  backgroundColor: "#E2E8F0",
                 }}
               />
 
               <VStack
                 $css={{
-                  gap: "3px",
-                  alignItems: "flex-start",
-                  paddingTop: "1px",
+                  flex: 1,
+                  minWidth: 0,
+                  gap: "0",
                 }}
               >
                 <Text
-                  render={<p />}
+                  render={<h2 />}
                   $css={{
-                    color: PRIMARY_TEXT,
+                    color: TITLE_TEXT,
                     fontFamily:
                       '"Inter", "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", sans-serif',
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    fontWeight: 500,
+                    fontSize: "18px",
+                    lineHeight: "26px",
+                    fontWeight: 700,
                     letterSpacing: "-0.1px",
                   }}
                 >
-                  {EXPLORE_SUBTITLE}
+                  {SUMMARY_TITLE}
                 </Text>
                 <Text
                   render={<p />}
@@ -322,201 +336,116 @@ export function ReservationPage() {
                     letterSpacing: "-0.1px",
                   }}
                 >
-                  {EXPLORE_MENTOR}
-                </Text>
-                <Text
-                  render={<p />}
-                  $css={{
-                    color: PRIMARY_TEXT,
-                    fontFamily:
-                      '"Inter", "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", sans-serif',
-                    fontSize: "24px",
-                    lineHeight: "36px",
-                    fontWeight: 700,
-                    letterSpacing: "-0.3px",
-                  }}
-                >
-                  <span>{formatCurrency(UNIT_PRICE)}</span>
-                  <span
-                    style={{
-                      fontSize: "14px",
-                      lineHeight: "20px",
-                      fontWeight: 400,
-                      color: "#393939",
-                      letterSpacing: "-0.1504px",
-                    }}
-                  >
-                    {" "}
-                  </span>
-                  <span
-                    style={{
-                      fontSize: "14px",
-                      lineHeight: "22px",
-                      fontWeight: 500,
-                      color: "#393939",
-                      letterSpacing: "-0.1px",
-                    }}
-                  >
-                    / 인
-                  </span>
+                  {SUMMARY_MENTOR}
                 </Text>
               </VStack>
             </Box>
-          </VStack>
-        </SectionCard>
 
-        <SectionCard height="141.435px">
-          <VStack
-            $css={{
-              gap: "15.995px",
-              paddingTop: "23.992px",
-              paddingLeft: "23.992px",
-              paddingRight: "23.992px",
-            }}
-          >
-            <SectionHeader iconSrc={calendarIcon} title="날짜 선택" />
             <Box
               $css={{
                 width: "100%",
-                height: "49.455px",
-                borderRadius: SMALL_RADIUS,
-                border: "0.735px solid #E2E8F0",
+                borderRadius: CARD_RADIUS,
+                border: `1px solid ${BORDER_COLOR}`,
                 backgroundColor: "#FFFFFF",
-              }}
-            />
-          </VStack>
-        </SectionCard>
-
-        <SectionCard height="131.979px">
-          <VStack
-            $css={{
-              gap: "15.995px",
-              paddingTop: "23.992px",
-              paddingLeft: "23.992px",
-              paddingRight: "23.992px",
-            }}
-          >
-            <SectionHeader iconSrc={peopleIcon} title="참가 인원" />
-
-            <Box
-              $css={{
+                padding: "24px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                width: "100%",
-                height: "39.998px",
+                gap: "12px",
               }}
             >
-              <Text
-                render={<p />}
-                $css={{
-                  color: BODY_TEXT,
-                  fontFamily:
-                    '"Inter", "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", sans-serif',
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  fontWeight: 400,
-                  letterSpacing: "-0.3125px",
-                }}
-              >
-                인원 수
-              </Text>
+              <SectionTitle iconSrc={calendarIcon} title="날짜" />
+              <SelectButton />
+            </Box>
+
+            <Box
+              $css={{
+                width: "100%",
+                minHeight: "131.979px",
+                borderRadius: CARD_RADIUS,
+                border: `1px solid ${BORDER_COLOR}`,
+                backgroundColor: "#FFFFFF",
+                padding: "23.992px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "16px",
+              }}
+            >
+              <SectionTitle iconSrc={peopleIcon} title="참가 인원" />
 
               <Box
                 $css={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "15.995px",
+                  justifyContent: "space-between",
+                  gap: "12px",
                 }}
               >
-                <CounterButton
-                  label="-"
-                  onClick={() =>
-                    setParticipantCount((current) => Math.max(1, current - 1))
-                  }
-                />
                 <Text
                   render={<p />}
                   $css={{
-                    color: PRIMARY_TEXT,
+                    color: TITLE_TEXT,
                     fontFamily:
                       '"Inter", "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", sans-serif',
-                    fontSize: "20px",
-                    lineHeight: "28px",
-                    fontWeight: 700,
-                    letterSpacing: "-0.4492px",
-                    minWidth: "32px",
-                    textAlign: "center",
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    fontWeight: 500,
+                    letterSpacing: "-0.1px",
                   }}
                 >
-                  {participantCount}
+                  인원 수
                 </Text>
-                <CounterButton
-                  label="+"
-                  onClick={() => setParticipantCount((current) => current + 1)}
-                />
+
+                <Box
+                  $css={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "15.995px",
+                  }}
+                >
+                  <CounterButton
+                    label="-"
+                    onClick={() =>
+                      setParticipantCount((current) => Math.max(1, current - 1))
+                    }
+                  />
+
+                  <Text
+                    render={<p />}
+                    $css={{
+                      minWidth: "32px",
+                      textAlign: "center",
+                      color: "#262626",
+                      fontFamily: '"Inter", sans-serif',
+                      fontSize: "20px",
+                      lineHeight: "28px",
+                      fontWeight: 700,
+                      letterSpacing: "-0.4492px",
+                    }}
+                  >
+                    {participantCount}
+                  </Text>
+
+                  <CounterButton
+                    label="+"
+                    onClick={() => setParticipantCount((current) => current + 1)}
+                  />
+                </Box>
               </Box>
             </Box>
-          </VStack>
-        </SectionCard>
-
-        <SectionCard height="128.704px">
-          <VStack
-            $css={{
-              gap: "11.996px",
-              paddingTop: "23.992px",
-              paddingLeft: "23.992px",
-              paddingRight: "23.992px",
-            }}
-          >
-            <Box
-              $css={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                width: "100%",
-                height: "23.992px",
-              }}
-            >
-              <Text
-                render={<p />}
-                $css={{
-                  color: "#FFFFFF",
-                  fontFamily:
-                    '"Inter", "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", sans-serif',
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  fontWeight: 400,
-                  letterSpacing: "-0.3125px",
-                }}
-              >
-                체험 비용
-              </Text>
-              <Text
-                render={<p />}
-                $css={{
-                  color: "#FFFFFF",
-                  fontFamily:
-                    '"Inter", "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", sans-serif',
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  fontWeight: 400,
-                  letterSpacing: "-0.3125px",
-                }}
-              >
-                {formatCurrency(UNIT_PRICE)} x {participantCount}
-              </Text>
-            </Box>
 
             <Box
               $css={{
                 width: "100%",
-                borderTop: "0.735px solid rgba(255, 255, 255, 0.2)",
-                paddingTop: "0.735px",
+                borderRadius: CARD_RADIUS,
+                backgroundColor: DARK_SURFACE,
+                boxShadow:
+                  "0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.1)",
+                padding: "12px 24px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                height: "44.732px",
+                minHeight: "68px",
               }}
             >
               <Text
@@ -526,13 +455,14 @@ export function ReservationPage() {
                   fontFamily:
                     '"Inter", "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", sans-serif',
                   fontSize: "18px",
-                  lineHeight: "28px",
+                  lineHeight: "26px",
                   fontWeight: 700,
-                  letterSpacing: "-0.4395px",
+                  letterSpacing: "-0.1px",
                 }}
               >
                 총 결제 금액
               </Text>
+
               <Text
                 render={<p />}
                 $css={{
@@ -540,25 +470,67 @@ export function ReservationPage() {
                   fontFamily:
                     '"Inter", "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", sans-serif',
                   fontSize: "24px",
-                  lineHeight: "32px",
+                  lineHeight: "36px",
                   fontWeight: 700,
-                  letterSpacing: "0.0703px",
+                  letterSpacing: "-0.3px",
                 }}
               >
                 {formatCurrency(totalPrice)}
               </Text>
             </Box>
           </VStack>
-        </SectionCard>
 
+          <Box
+            $css={{
+              display: "flex",
+              alignItems: "center",
+              gap: "4px",
+            }}
+          >
+            <Box
+              render={<img src={infoIcon} alt="" aria-hidden="true" />}
+              $css={{
+                width: "19.993px",
+                height: "19.993px",
+                display: "block",
+                flexShrink: 0,
+              }}
+            />
+            <Text
+              render={<p />}
+              $css={{
+                color: SECONDARY_TEXT,
+                fontFamily:
+                  '"Inter", "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", sans-serif',
+                fontSize: "14px",
+                lineHeight: "22px",
+                fontWeight: 500,
+                letterSpacing: "-0.1px",
+              }}
+            >
+              예약 후 24시간 이내에 취소하면 요금 전액 환불됩니다.
+            </Text>
+          </Box>
+        </VStack>
+      </Box>
+
+      <Box
+        $css={{
+          position: "absolute",
+          left: "16px",
+          right: "16px",
+          bottom: "20px",
+          zIndex: 3,
+        }}
+      >
         <Box
-          render={<button type="button" />}
+          render={<button type="button" aria-label="다음" />}
           $css={{
             width: "100%",
-            height: "55.981px",
+            height: BUTTON_HEIGHT,
             border: "none",
-            borderRadius: SMALL_RADIUS,
-            backgroundColor: ACCENT_BLUE,
+            borderRadius: CTA_RADIUS,
+            backgroundColor: CTA_BACKGROUND,
             color: "#FFFFFF",
             cursor: "pointer",
             display: "grid",
@@ -579,7 +551,7 @@ export function ReservationPage() {
             다음
           </Text>
         </Box>
-      </VStack>
+      </Box>
     </Box>
   );
 }
