@@ -152,19 +152,25 @@ export function OnboardingPage() {
             </Button>
             <Button
               render={<Link to={ROUTES.login} />}
-              variant="outline"
               $css={{
                 width: "100%",
-                minHeight: "59px",
+                height: "58.923px",
+                paddingInline: "33.471px",
+                paddingBlock: "17.471px",
                 borderRadius: "999px",
                 borderColor: "#E2E8F0",
-                borderWidth: "1.5px",
+                borderStyle: "solid",
+                borderWidth: "1.471px",
                 backgroundColor: "#FFFFFF",
                 color: "#0F172B",
+                fontFamily:
+                  '"Inter", "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", sans-serif',
                 fontSize: "16px",
                 fontWeight: 600,
+                lineHeight: "24px",
                 letterSpacing: "-0.31px",
                 justifyContent: "center",
+                boxShadow: "none",
               }}
             >
               로그인
